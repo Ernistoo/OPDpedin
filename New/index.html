@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3x3 Grid with Name Validation</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        gap: 10px;
+      }
+
+      .grid-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #000;
+        box-sizing: border-box;
+      }
+
+      .grid-item input {
+        width: 90%;
+        padding: 5px;
+      }
+
+      .grid-item button {
+        margin-top: 10px;
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- First box with name input and validation -->
+      <div class="grid-item">
+        <form id="nameForm">
+          <label for="nameInput">Name:</label>
+          <input
+            type="text"
+            id="nameInput"
+            name="name"
+            required
+            pattern="^[A-Za-z]{2,50}$"
+            title="Name must be 2-50 characters long and contain only letters"
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- Other empty grid items -->
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+    </div>
+
+    <script>
+      // Add form validation feedback
+      const form = document.getElementById("nameForm");
+      form.addEventListener("submit", function (event) {
+        const input = document.getElementById("nameInput");
+        if (!input.checkValidity()) {
+          alert(input.title);
+          event.preventDefault();
+        } else {
+          alert("Name submitted successfully!");
+        }
+      });
+    </script>
+  </body>
+</html>
