@@ -16,9 +16,9 @@
 
       .grid-container {
         display: grid;
-        grid-template-columns: repeat(3, 100px);
-        grid-template-rows: repeat(3, 100px);
-        gap: 10px;
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+        gap: 30px;
       }
 
       .grid-item {
@@ -30,7 +30,7 @@
       }
 
       .grid-item input {
-        width: 90%;
+        width: 80%;
         padding: 5px;
       }
 
@@ -38,11 +38,17 @@
         margin-top: 10px;
         padding: 5px 10px;
       }
+
+      .output {
+        margin-top: 10px;
+        color: green;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
     <div class="grid-container">
-      <!-- First box with name input and validation -->
+      
       <div class="grid-item">
         <form id="nameForm">
           <label for="nameInput">Name:</label>
@@ -56,9 +62,10 @@
           />
           <button type="submit">Submit</button>
         </form>
+        <div class="output" id="output"></div>
       </div>
 
-      <!-- Other empty grid items -->
+     
       <div class="grid-item"></div>
       <div class="grid-item"></div>
       <div class="grid-item"></div>
@@ -70,17 +77,23 @@
     </div>
 
     <script>
-      // Add form validation feedback
+     
       const form = document.getElementById("nameForm");
+      const output = document.getElementById("output");
+
       form.addEventListener("submit", function (event) {
+        event.preventDefault();
         const input = document.getElementById("nameInput");
+
         if (!input.checkValidity()) {
           alert(input.title);
-          event.preventDefault();
         } else {
+          const name = input.value;
+          output.textContent = `Submitted Name: ${name}`;
           alert("Name submitted successfully!");
         }
       });
     </script>
   </body>
 </html>
+
